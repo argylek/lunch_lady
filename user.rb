@@ -16,8 +16,8 @@ class User
   end
 end
 
-user = User.new
-user.customer_name
-puts @name
-user.customer_add_to_wallet
-puts @money
+# user = User.new
+# user.customer_name
+# puts @name
+# user.customer_add_to_wallet
+# puts @money
