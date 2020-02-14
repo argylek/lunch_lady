@@ -1,6 +1,7 @@
 require_relative 'user'
 require_relative 'dishes'
-# require_relative 'side_dishes'
+require_relative 'register'
+require_relative 'menu'
 
 mains = [ 
   {dish: "Meat Loaf", price: 5, nutrition: nil},
@@ -16,18 +17,45 @@ mains = [
 @user = User.new
 @mains = Dishes.new(mains, "main")
 @sides = Dishes.new(sides, "side")
-@register = Cash_Regsister.new(@mains.user_order, @mains.user_bill, @sides.user_order, @sides.user_bill, @user.money)
+@register = Cash_Register.new(@sides.user_order, @mains.user_order)
+@menu= Menu.new
 
 def lunch_lady
-  # the program is in a loop to keep asking the user to make new orders until they type 'quit' at any time
-  # display to the user not only their total but the total fat content/calories / carbs / etc...
+  puts "Hello, and welcome to the virtual lunch room!"
+  @user.customer_name
+  @menu.seperator
+  @user.customer_wallet
+  @register.wallet = @user.money
+  @menu.seperator
+  main_menu
+  @mains.user_order = []
+  @sides.user_order = []
+
 end
 
-# @mains.food_choices
-# @sides.food_choices
-
-# @mains.show_food_cost
-# @sides.show_food_cost
+def main_menu
+  loop do
+    @menu.main_menu
+    menu_selection = gets.chomp.to_i
+    case menu_selection
+      when 1
+          @mains.food_choices
+      when 2
+          @sides.food_choices
+      when 3
+          @register.reciept
+      when 4
+          @register.checkout
+      when 5
+          @register.restart
+      when 6
+        break
+      else
+        puts "invalid choice"
+      end
+  end
+end
+lunch_lady
 
 # Basic Objectives:
 

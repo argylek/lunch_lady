@@ -9,7 +9,7 @@ class User
     @name = gets.chomp.to_s
     puts "Nice to have you #{@name}"
   end
-  def customer_add_to_wallet
+  def customer_wallet
     puts "How much money do you have today?"
     @money = gets.chomp
     puts "Well well well, #{@name} looks like you've got $#{@money} burning a hole in your pocket. Lets get lunch."
